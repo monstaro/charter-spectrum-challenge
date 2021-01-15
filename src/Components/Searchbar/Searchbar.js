@@ -3,7 +3,9 @@ import './Searchbar.css';
 
 const Searchbar = () => {
     return (
-        'Search bar'
+        <div className="searchbar-container">
+            <input type="text" placeholder="Find some food" className="searchbar-input" />
+        </div>
     )
 }
 
