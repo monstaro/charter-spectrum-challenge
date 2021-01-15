@@ -1,6 +1,19 @@
+.searchbar-container {
+    display: flex;
+}
+
 .searchbar-input {
+    border: 1px solid white;
+    border-radius: 5px 0 0 5px;
     font-size: 1.8em;
     height: 30px;
     padding: 10px;
     width: 350px;
+}
+
+.searchbar-icon {
+    background-color: white;
+    border-radius: 0 5px 5px 0;
+    height: 32px;
+    padding: 10px;
 }
