@@ -1,10 +1,11 @@
 import React from 'react';
 import './Restaurant.css';
 
-const Restaurant = () => {
+const Restaurant = (props) => {
+  const { name } = props;
     return (
-        <div>
-            Restaurant
+        <div className="restaurant-card">
+            { name }
         </div>
     )
 }
