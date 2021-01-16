@@ -1,6 +1,6 @@
 body, html {
   height: 100%;
-  background-image: url('http://storage.googleapis.com/zagat-article-ss/ElFive_View_Denver_EdibleBeats.jpg');
+  background-image: url('./Assets/homepage-bg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
