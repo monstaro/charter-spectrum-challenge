@@ -1,0 +1,29 @@
+@import '../../sass/mixins';
+
+.header-container {
+    @include area-container();
+}
+
+.header-title-area {
+    max-width: 50%;
+}
+
+.header-site-title {
+    color: white;
+    display: inline;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 5em;
+    margin: 25px 0 0 25px;
+    padding: 15px;
+}
+
+.header-sub-title {
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: italic;
+    margin: 0 0 0 35%;
+}
+
+.header-searchbar-area {
+    margin: auto;
+}
