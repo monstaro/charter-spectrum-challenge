@@ -7,7 +7,7 @@ class RestaurantsContainer extends Component {
    constructor(props) {
        super(props);
        this.state = {
-        restaurantsList: null,
+        restaurantsList: [],
         isLoaded: false,
        }
    };
@@ -19,20 +19,17 @@ class RestaurantsContainer extends Component {
         }))
    }
    render() {
-       const { restaurants } = this.state;
-       const { isLoaded } = this.state;
-       if (!isLoaded) {
-           console.log(restaurants)
-           return <div className="restaurants-container"> Loading, please wait... </div>
-       } else {
-           restaurants.map(restaurant => {
-               return (
-                    <div className="restaurants-container">
-                        <Restaurant name={restaurant.name}/>
-                    </div>
-               )
-           })
-       }
+     const { isLoaded } = this.state;
+     const { restaurantsList } = this.state;
+     if (!isLoaded) {
+       return (<div className="restaurants-container">Please wait...</div>)
+     } else {
+       return (
+      <div className="restaurants-container">
+        {restaurantsList.map(restaurant => <Restaurant name={restaurant.name }/>)}
+      </div>
+    )
+     }
    }
 }
 
