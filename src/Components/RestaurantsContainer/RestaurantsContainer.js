@@ -14,7 +14,7 @@ class RestaurantsContainer extends Component {
    componentDidMount = () => {
         getRestaurants()
         .then(data => this.setState({
-            restaurantsList: data,
+            restaurantsList: data.sort((a, b) => a.name.localeCompare(b.name)),
             isLoaded: true
         }))
    }
@@ -28,14 +28,17 @@ class RestaurantsContainer extends Component {
        return (
       <div className="restaurants-container">
       <table className="restaurants-table">
+        <thead>
         <tr>
           <th>Name</th>
           <th>City</th>
           <th>State</th>
           <th>Phone</th>
           <th>Category</th>
-        </tr>
+          </tr>
+        </thead>
         {restaurantsList.map(restaurant =>
+          <tbody>
           <tr>
           <td>{restaurant.name}</td>
           <td>{restaurant.city}</td>
@@ -43,6 +46,7 @@ class RestaurantsContainer extends Component {
           <td>{restaurant.telephone}</td>
           <td>{restaurant.genre}</td>
           </tr>
+          </tbody>
         )}
       </table>
       </div>
