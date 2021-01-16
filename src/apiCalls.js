@@ -1,5 +1,5 @@
 export const getRestaurants = () => {
-    return fetch('https://code-challenge.spectrumtoolbox.com/api/restaurants', {
+   return fetch('https://code-challenge.spectrumtoolbox.com/api/restaurants', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -7,8 +7,6 @@ export const getRestaurants = () => {
         },        
     })
     .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.error(err))
 }
 
 export default getRestaurants;
