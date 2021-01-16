@@ -2,6 +2,30 @@
 
 .restaurants-container {
     @include area-container();
-    width: 70%;
-    margin: 15% auto auto auto;
+    width: 85%;
+    margin: 5% auto auto auto;
+}
+
+.restaurants-table {
+  color: white;
+  font-size: 1.2em;
+  text-align: left;
+  width: 100%;
+}
+
+.restaurants-table tr:nth-child(even){
+  background-color: rgba(255, 255, 255, 0.454)
+}
+
+.restaurants-table tr:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.restaurants-table th {
+  background-color: rgba(191, 191, 63, 0.48);
+}
+
+.restaurants-table th, td {
+  padding: 10px;
 }

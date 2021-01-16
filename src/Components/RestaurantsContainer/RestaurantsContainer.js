@@ -21,12 +21,30 @@ class RestaurantsContainer extends Component {
    render() {
      const { isLoaded } = this.state;
      const { restaurantsList } = this.state;
+     console.log(restaurantsList)
      if (!isLoaded) {
        return (<div className="restaurants-container">Please wait...</div>)
      } else {
        return (
       <div className="restaurants-container">
-        {restaurantsList.map(restaurant => <Restaurant name={restaurant.name }/>)}
+      <table className="restaurants-table">
+        <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Phone</th>
+          <th>Category</th>
+        </tr>
+        {restaurantsList.map(restaurant =>
+          <tr>
+          <td>{restaurant.name}</td>
+          <td>{restaurant.city}</td>
+          <td>{restaurant.state}</td>
+          <td>{restaurant.telephone}</td>
+          <td>{restaurant.genre}</td>
+          </tr>
+        )}
+      </table>
       </div>
     )
      }
