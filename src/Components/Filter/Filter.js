@@ -4,31 +4,35 @@ import {RestaurantContext} from '../../RestaurantContext';
 const Filter = (props) => {
   const { type } = props;
   const { options } = props;
-  const [restaurants] = useContext(RestaurantContext);
+  const [restaurants, setRestaurants] = useContext(RestaurantContext);
   const restaurantGenres = [];
 
-  const populateGenres = () => {
-    //go through each restaurant and split up each name by comma
-    restaurants.forEach(restaurant => {
-      var split = restaurant.genre.split(',')
-      restaurantGenres.push(split)
-    })
-    console.log(restaurantGenres)
-    // restaurants.reduce((categoriesList, currentCategory) => {
-    //     if
-    //   return categoriesList
-    // }, [])
-  }
+  // const populateGenres = () => {
+  //   //go through each restaurant and split up each name by comma
+  //   restaurants.forEach(restaurant => {
+  //     var split = restaurant.genre.split(',')
+  //     restaurantGenres.push(split)
+  //   })
+  //   console.log(restaurantGenres)
+  //   // restaurants.reduce((categoriesList, currentCategory) => {
+  //   //     if
+  //   //   return categoriesList
+  //   // }, [])
+      // }
 
+  const handleClick = (e) => {
+      e.preventDefault();
+      console.log('twas clicked')
+    }
   if (type === 'state') {
     return (
       <div className="filter-dropdown">
         <label for='state'>Choose a state</label>
-          <select name="states">
+          <select name="states" onChange={(e) => console.log(e.target.value)}>
             {
               options.map(state => {
                 return (
-                  <option value="state">{state}</option>
+                  <option value={state}> {state}</option>
                 )
               })
             }
