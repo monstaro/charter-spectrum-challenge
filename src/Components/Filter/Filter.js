@@ -5,6 +5,20 @@ const Filter = (props) => {
   const { type } = props;
   const { options } = props;
   const [restaurants] = useContext(RestaurantContext);
+  const restaurantGenres = [];
+
+  const populateGenres = () => {
+    //go through each restaurant and split up each name by comma
+    restaurants.forEach(restaurant => {
+      var split = restaurant.genre.split(',')
+      restaurantGenres.push(split)
+    })
+    console.log(restaurantGenres)
+    // restaurants.reduce((categoriesList, currentCategory) => {
+    //     if
+    //   return categoriesList
+    // }, [])
+  }
 
   if (type === 'state') {
     return (
