@@ -5,8 +5,6 @@ import RestaurantsContainer from './Components/RestaurantsContainer/RestaurantsC
 import {RestaurantProvider} from './RestaurantContext';
 import {allStates} from './utilities.js'
 function App() {
-  console.log(allStates)
-
   return (
     <RestaurantProvider>
     <div className="App">
