@@ -1,28 +1,10 @@
-import React, { useContext } from 'react';
-import {RestaurantContext} from '../../RestaurantContext';
+import React from 'react';
 
 const Filter = (props) => {
   const { type } = props;
   const { options } = props;
-  const [restaurants, setRestaurants] = useContext(RestaurantContext);
-  const restaurantGenres = [];
   const { clickHandler } = props;
-  // const populateGenres = () => {
-  //   //go through each restaurant and split up each name by comma
-  //   restaurants.forEach(restaurant => {
-  //     var split = restaurant.genre.split(',')
-  //     restaurantGenres.push(split)
-  //   })
-  //   console.log(restaurantGenres)
-  //   // restaurants.reduce((categoriesList, currentCategory) => {
-  //   //     if
-  //   //   return categoriesList
-  //   // }, [])
-      // }
-
-  // const handleClick = (e) => {
-  //
-  //   }
+  const { allGenres } = props;
   if (type === 'state') {
     return (
       <div className="filter-dropdown">
@@ -42,16 +24,17 @@ const Filter = (props) => {
   if (type === 'genre') {
     return (
       <div className="filter-dropdown">
-      <label for='category'>Choose a category</label>
-        <select name="categories">
+        <label for='category'>Choose a category</label>
+          <select name="categories" onChange={(e) => clickHandler(e, 'categories')}>
           {
-            restaurants.map(restaurant => {
+            allGenres.map(genre => {
               return (
-                <option value="category">{restaurant.genre}</option>
+                <option value={genre}> {genre}</option>
               )
             })
           }
           </select>
+
       </div>
     )
   }
