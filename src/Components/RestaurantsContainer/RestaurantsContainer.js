@@ -1,28 +1,17 @@
-import React, { Component } from 'react';
-import Restaurant from '../Restaurant/Restaurant';
+import React, { useContext, useEffect } from 'react';
 import './RestaurantsContainer.scss';
-import getRestaurants from '../../apiCalls';
+import {RestaurantContext} from '../../RestaurantContext';
+import getRestaurants from '../../apiCalls.js';
 
-class RestaurantsContainer extends Component {
-   constructor(props) {
-       super(props);
-       this.state = {
-        restaurantsList: [],
-        isLoaded: false,
-       }
-   };
-   componentDidMount = () => {
-        getRestaurants()
-        .then(data => this.setState({
-            restaurantsList: data.sort((a, b) => a.name.localeCompare(b.name)),
-            isLoaded: true
-        }))
-   }
-   render() {
-     const { isLoaded } = this.state;
-     const { restaurantsList } = this.state;
-     console.log(restaurantsList)
-     if (!isLoaded) {
+const RestaurantsContainer = () => {
+  const [restaurants, setRestaurants] = useContext(RestaurantContext);
+
+  useEffect(() => {
+     getRestaurants()
+    .then(data => setRestaurants(data.sort((a, b) => a.name.localeCompare(b.name))))
+  });
+
+     if (!restaurants.length) {
        return (<div className="restaurants-container">Please wait...</div>)
      } else {
        return (
@@ -37,7 +26,7 @@ class RestaurantsContainer extends Component {
           <th>Category</th>
           </tr>
         </thead>
-        {restaurantsList.map(restaurant =>
+        {restaurants.map(restaurant =>
           <tbody>
           <tr>
           <td>{restaurant.name}</td>
@@ -51,7 +40,6 @@ class RestaurantsContainer extends Component {
       </table>
       </div>
     )
-     }
    }
 }
 

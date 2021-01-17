@@ -1,23 +1,13 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './Restaurant.css';
+import {RestaurantContext} from '../../RestaurantContext';
 
 const Restaurant = (props) => {
   const { name } = props;
+  const value = useContext(RestaurantContext)
+  console.log(value)
     return (
         <div className="restaurant-card">
-        <table>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-</table>
-            { name }
         </div>
     )
 }
