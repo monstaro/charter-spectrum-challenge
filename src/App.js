@@ -35,7 +35,7 @@ componentDidMount() {
             }
           })
         return allGenres;
-      }, []).sort()
+      }, ['All']).sort()
     }))}
 // parseGenres(data) {
 //   console.log(data)
@@ -57,17 +57,21 @@ clickHandler(e, type) {
       selectedRestaurants: this.state.allRestaurants.filter(restaurant => restaurant.state === e.target.value)
     })
   }
+  if (type === 'categories' && e.target.value !== 'All') {
+    console.log('ok')
+    this.setState({
+      selectedRestaurants: this.state.allRestaurants.filter(restaurant => restaurant.genre.includes(e.target.value))
+    })
+  }
 }
 
 render() {
-  console.log(this.state.allGenres)
-
   return (
     <RestaurantProvider>
     <div className="App">
       <Header />
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
-      <Filter type="genre" allGenres={this.state.allGenres}/>
+      <Filter type="genre" allGenres={this.state.allGenres} clickHandler={this.clickHandler}/>
       <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedRestaurants={this.state.selectedRestaurants}/>
     </div>
     </RestaurantProvider>
