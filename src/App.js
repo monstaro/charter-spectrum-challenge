@@ -13,18 +13,37 @@ class App extends Component {
     super(props)
     this.state = {
       allRestaurants: [],
-      selectedRestaurants: []
+      selectedRestaurants: [],
+      allGenres: [],
+      selectedGenres: []
     }
     this.clickHandler = this.clickHandler.bind(this);
   }
+
 
 componentDidMount() {
     getRestaurants()
     .then(data => this.setState({
       allRestaurants: data.sort((a, b) => a.name.localeCompare(b.name)),
-      selectedRestaurants: data.sort((a, b) => a.name.localeCompare(b.name))
-    }))
-}
+      selectedRestaurants: data.sort((a, b) => a.name.localeCompare(b.name)),
+      allGenres: data.reduce((allGenres, currentRestaurant) => {
+          // console.log(currentRestaurant.genre.split(','))
+          let currentGenres = currentRestaurant.genre.split(',');
+          currentGenres.forEach(genre => {
+            if (!allGenres.includes(genre)) {
+              allGenres.push(genre)
+            }
+          })
+        return allGenres;
+      }, []).sort()
+    }))}
+// parseGenres(data) {
+//   console.log(data)
+//   data.forEach(restaurant => {
+//     console.log('u')
+//   })
+// }
+
 
 clickHandler(e, type) {
   if (e.target.value === 'All') {
@@ -41,12 +60,14 @@ clickHandler(e, type) {
 }
 
 render() {
+  console.log(this.state.allGenres)
+
   return (
     <RestaurantProvider>
     <div className="App">
       <Header />
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
-      <Filter type="genre"/>
+      <Filter type="genre" allGenres={this.state.allGenres}/>
       <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedRestaurants={this.state.selectedRestaurants}/>
     </div>
     </RestaurantProvider>
