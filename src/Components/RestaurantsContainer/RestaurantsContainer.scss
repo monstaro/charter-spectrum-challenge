@@ -1,6 +1,7 @@
 @import '../../sass/mixins';
 
 .restaurants-container {
+    color: white;
     @include area-container();
     width: 85%;
     margin: 5% auto auto auto;

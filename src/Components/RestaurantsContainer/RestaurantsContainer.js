@@ -5,19 +5,18 @@ import './RestaurantsContainer.scss';
 // import Restaurant from './Restaurant/Restaurant';
 
 const RestaurantsContainer = (props) => {
-  const { allRestaurants } = props
-  console.log(allRestaurants)
-// componentDidMount() {
-//   getRestaurants()
-//   .then(data => this.setState({
-//     restaurants: data.sort((a, b) => a.name.localeCompare(b.name))
-//   }))
-//   }
-
+  const { allRestaurants } = props;
+  const { selectedRestaurants } = props;
 
        if (!allRestaurants.length) {
          return (<div className="restaurants-container">Please wait...</div>)
-       } else {
+       }
+       if (!selectedRestaurants.length) {
+         return (
+           <div className="restaurants-container">There are no restaurants in your area...consider moving to a new state</div>
+         )
+       }
+       else {
          return (
         <div className="restaurants-container">
         <table className="restaurants-table">
@@ -30,7 +29,7 @@ const RestaurantsContainer = (props) => {
             <th>Category</th>
             </tr>
           </thead>
-          {allRestaurants.map(restaurant =>
+          {selectedRestaurants.map(restaurant =>
             <tbody>
             <tr>
             <td>{restaurant.name}</td>
