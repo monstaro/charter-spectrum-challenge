@@ -6,7 +6,7 @@ const Filter = (props) => {
   const { options } = props;
   const [restaurants, setRestaurants] = useContext(RestaurantContext);
   const restaurantGenres = [];
-
+  const { clickHandler } = props;
   // const populateGenres = () => {
   //   //go through each restaurant and split up each name by comma
   //   restaurants.forEach(restaurant => {
@@ -20,15 +20,14 @@ const Filter = (props) => {
   //   // }, [])
       // }
 
-  const handleClick = (e) => {
-      e.preventDefault();
-      console.log('twas clicked')
-    }
+  // const handleClick = (e) => {
+  //
+  //   }
   if (type === 'state') {
     return (
       <div className="filter-dropdown">
         <label for='state'>Choose a state</label>
-          <select name="states" onChange={(e) => console.log(e.target.value)}>
+          <select name="states" onChange={(e) => clickHandler(e, 'state')}>
             {
               options.map(state => {
                 return (
