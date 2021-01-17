@@ -1,7 +1,3 @@
-import React, { useContext } from 'react';
-import {RestaurantContext} from './RestaurantContext';
-
-
 const getRestaurants = () => {
   return fetch('https://code-challenge.spectrumtoolbox.com/api/restaurants', {
    method: 'GET',
