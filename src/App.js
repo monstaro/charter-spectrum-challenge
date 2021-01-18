@@ -69,7 +69,8 @@ componentDidMount() {
     let searchedRestaurants = [];
       for (var j = 0; j < this.state.selectedRestaurants.length; j++) {
         searchTerms.forEach(term => {
-          if (term.toLowerCase() === (this.state.selectedRestaurants[j].city.toLowerCase())) {
+          console.log(searchedRestaurants, this.state.selectedRestaurants[j])
+          if (term.toLowerCase() === this.state.selectedRestaurants[j].city.toLowerCase()) {
             searchedRestaurants.push(this.state.selectedRestaurants[j])
           }
           if (term.toLowerCase() === this.state.selectedRestaurants[j].state.toLowerCase()) {

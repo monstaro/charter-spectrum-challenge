@@ -24,7 +24,7 @@ const RestaurantsContainer = (props) => {
   // Filter by search categories
   if (searchTerms.length) {
     let newList = []
-      for (var j = 0; j < searchedRestaurants.length; j++) {
+      for (let j = 0; j < searchedRestaurants.length; j++) {
         selectedRestaurants.forEach(restaurant => {
           if (restaurant.id === searchedRestaurants[j].id) {
             newList.push(restaurant)
