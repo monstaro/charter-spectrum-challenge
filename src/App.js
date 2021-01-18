@@ -17,6 +17,7 @@ class App extends Component {
       selectedGenre: 'All',
       selectedState: 'All',
       searchTerms: [],
+      searchedRestaurants: []
     }
     this.clickHandler = this.clickHandler.bind(this);
     this.filterBySearchTerm = this.filterBySearchTerm.bind(this);
@@ -61,11 +62,20 @@ componentDidMount() {
   }
 }
 
-  filterBySearchTerm(searchTerm) {
+  filterBySearchTerm(searchTerms) {
     this.setState({
-      searchTerms: searchTerm.split(' ')
+      searchTerms: searchTerms
     })
+    var searchedRestaurants = [];
+      for (var j = 0; j < this.state.selectedRestaurants.length; j++) {
+        searchTerms.forEach(term => {
+          if (term.toLowerCase() === this.state.selectedRestaurants[j].city.toLowerCase()) {
+            searchedRestaurants.push(this.state.selectedRestaurants[j])
+          }
+        })
+      }
   }
+
 
 render() {
   return (
@@ -74,7 +84,7 @@ render() {
       <Header searchHandler={this.filterBySearchTerm}/>
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
       <Filter type="genre" allGenres={this.state.allGenres} clickHandler={this.clickHandler}/>
-      <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre}/>
+      <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre} />
     </div>
     </RestaurantProvider>
   );

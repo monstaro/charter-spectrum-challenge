@@ -6,7 +6,7 @@ const Searchbar = (props) => {
   const handleKeyDown = (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        props.searchHandler(e.target.value)
+        props.searchHandler(e.target.value.split(' '))
       }
   }
     return (

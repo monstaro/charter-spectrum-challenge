@@ -5,6 +5,7 @@ const RestaurantsContainer = (props) => {
   const { allRestaurants } = props;
   const { selectedState } = props;
   const { selectedGenre } = props;
+  const { searchedRestaurants } = props;
 
   let selectedRestaurants = [];
 
@@ -15,12 +16,17 @@ const RestaurantsContainer = (props) => {
     selectedRestaurants = allRestaurants.filter(restaurant => restaurant.state === selectedState)
   }
   if (selectedState !== 'All' && selectedGenre !== 'All') {
-    console.log(allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre) && restaurant.state === selectedState))
     selectedRestaurants = allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre) && restaurant.state === selectedState)
   }
   if (selectedState === 'All' && selectedGenre === 'All') {
     selectedRestaurants = allRestaurants;
   }
+  // Filter by search categories
+
+console.log(searchedRestaurants)
+
+
+
 
        if (!allRestaurants.length) {
          return (<div className="restaurants-container">Please wait...</div>)
