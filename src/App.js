@@ -66,14 +66,23 @@ componentDidMount() {
     this.setState({
       searchTerms: searchTerms
     })
-    var searchedRestaurants = [];
+    let searchedRestaurants = [];
       for (var j = 0; j < this.state.selectedRestaurants.length; j++) {
         searchTerms.forEach(term => {
-          if (term.toLowerCase() === this.state.selectedRestaurants[j].city.toLowerCase()) {
+          if (term.toLowerCase() === (this.state.selectedRestaurants[j].city.toLowerCase())) {
+            searchedRestaurants.push(this.state.selectedRestaurants[j])
+          }
+          if (term.toLowerCase() === this.state.selectedRestaurants[j].state.toLowerCase()) {
+            searchedRestaurants.push(this.state.selectedRestaurants[j])
+          }
+          if (term.toLowerCase() === this.state.selectedRestaurants[j].name.toLowerCase()) {
             searchedRestaurants.push(this.state.selectedRestaurants[j])
           }
         })
       }
+    this.setState({
+      searchedRestaurants: searchedRestaurants
+    })
   }
 
 
@@ -84,7 +93,7 @@ render() {
       <Header searchHandler={this.filterBySearchTerm}/>
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
       <Filter type="genre" allGenres={this.state.allGenres} clickHandler={this.clickHandler}/>
-      <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre} />
+      <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre} searchTerms={this.state.searchTerms} searchedRestaurants={this.state.searchedRestaurants}/>
     </div>
     </RestaurantProvider>
   );

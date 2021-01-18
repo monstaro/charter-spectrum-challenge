@@ -6,7 +6,7 @@ const RestaurantsContainer = (props) => {
   const { selectedState } = props;
   const { selectedGenre } = props;
   const { searchedRestaurants } = props;
-
+  const { searchTerms } = props;
   let selectedRestaurants = [];
 
   if (selectedState === 'All' && selectedGenre !== 'All') {
@@ -22,8 +22,25 @@ const RestaurantsContainer = (props) => {
     selectedRestaurants = allRestaurants;
   }
   // Filter by search categories
+  if (searchTerms.length) {
+    let newList = []
+      for (var j = 0; j < searchedRestaurants.length; j++) {
+        selectedRestaurants.forEach(restaurant => {
+          if (restaurant.id === searchedRestaurants[j].id) {
+            newList.push(restaurant)
+          }
+        })
+      }
 
-console.log(searchedRestaurants)
+        selectedRestaurants = newList;
+
+
+    // selectedRestaurants.reduce((newList, currentRestaurant) => {
+    //
+    //   return newList
+    // }, [])
+    // selectedRestaurants = selectedRestaurants.filter(restaurant => restaurant.id === )
+  }
 
 
 
