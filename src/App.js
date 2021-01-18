@@ -48,7 +48,7 @@ componentDidMount() {
   if (type === 'genre' && e.target.value !== 'All') {
     this.setState({
       selectedGenre: e.target.value
-    })
+    })Up
   }
   if (type === 'state' && e.target.value === 'All') {
     this.setState({
@@ -63,33 +63,9 @@ componentDidMount() {
 }
 
   filterBySearchTerm(searchTerms) {
-    this.setState({
-      searchTerms: searchTerms
-    })
-    // let searchedRestaurants = [];
-    //
-    // console.log(searchTerms, this.state.selectedRestaurants)
-    //
-    //
-    //
-    //   for (var j = 0; j < this.state.selectedRestaurants.length; j++) {
-    //     searchTerms.forEach(term => {
-    //       if (term.toLowerCase() === this.state.selectedRestaurants[j].city.toLowerCase()) {
-    //         searchedRestaurants.push(this.state.selectedRestaurants[j])
-    //       }
-    //       if (term.toLowerCase() === this.state.selectedRestaurants[j].state.toLowerCase()) {
-    //         searchedRestaurants.push(this.state.selectedRestaurants[j])
-    //       }
-    //       if (term.toLowerCase() === this.state.selectedRestaurants[j].name.toLowerCase()) {
-    //         searchedRestaurants.push(this.state.selectedRestaurants[j])
-    //       }
-    //     })
-    //   }
-    //   searchedRestaurants = [...new Set(searchedRestaurants)]
-
-    // this.setState({
-    //   searchedRestaurants: searchedRestaurants
-    // })
+      this.setState({
+        searchTerms: searchTerms
+      })
   }
 
 

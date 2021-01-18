@@ -9,9 +9,15 @@ const Searchbar = (props) => {
         props.searchHandler(e.target.value.split(' '))
       }
   }
+
+  const handleDelete = (e) => {
+    if (e.target.value === '') {
+      props.searchHandler([])
+    }
+  }
     return (
         <form className="searchbar-container">
-            <input type="text" placeholder="Find some food" className="searchbar-input" onKeyPress={(e) => handleKeyDown(e)}/>
+            <input type="text" placeholder="Find some food" className="searchbar-input" onKeyPress={(e) => handleKeyDown(e)} onKeyUp={(e) => handleDelete(e)}/>
             <img className="searchbar-icon" src={SearchIcon} alt="Press to Search" onClick={(e) => handleKeyDown(e)}/>
         </form>
     )
