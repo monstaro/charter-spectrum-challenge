@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import './RestaurantsContainer.scss';
-// import {RestaurantContext} from '../../RestaurantContext';
-// import getRestaurants from '../../apiCalls.js';
-// import Restaurant from './Restaurant/Restaurant';
 
 const RestaurantsContainer = (props) => {
   const { allRestaurants } = props;
-  const { selectedRestaurants } = props;
+  const { selectedState } = props;
+  const { selectedGenre } = props;
+
+  let selectedRestaurants = [];
+
+  if (selectedState === 'All' && selectedGenre !== 'All') {
+    selectedRestaurants = allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre))
+  }
+  if (selectedState !== 'All' && selectedGenre === 'All') {
+    selectedRestaurants = allRestaurants.filter(restaurant => restaurant.state === selectedState)
+  }
+  if (selectedState !== 'All' && selectedGenre !== 'All') {
+    console.log(allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre) && restaurant.state === selectedState))
+    selectedRestaurants = allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre) && restaurant.state === selectedState)
+  }
+  if (selectedState === 'All' && selectedGenre === 'All') {
+    selectedRestaurants = allRestaurants;
+  }
 
        if (!allRestaurants.length) {
          return (<div className="restaurants-container">Please wait...</div>)
        }
        if (!selectedRestaurants.length) {
          return (
-           <div className="restaurants-container">There are no restaurants in your area...consider moving to a new state</div>
+           <div className="restaurants-container">No Matches Found.</div>
          )
        }
        else {

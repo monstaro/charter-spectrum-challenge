@@ -7,7 +7,6 @@ import {allStates} from './utilities.js'
 import React, { Component } from 'react'
 import getRestaurants from './apiCalls.js';
 
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -15,11 +14,11 @@ class App extends Component {
       allRestaurants: [],
       selectedRestaurants: [],
       allGenres: [],
-      selectedGenres: []
+      selectedGenre: 'All',
+      selectedState: 'All'
     }
     this.clickHandler = this.clickHandler.bind(this);
   }
-
 
 componentDidMount() {
     getRestaurants()
@@ -37,30 +36,26 @@ componentDidMount() {
         return allGenres;
       }, ['All']).sort()
     }))}
-// parseGenres(data) {
-//   console.log(data)
-//   data.forEach(restaurant => {
-//     console.log('u')
-//   })
-// }
 
-
-clickHandler(e, type) {
-
-  if (e.target.value === 'All' && type === 'state') {
-    this.setState({
-      selectedRestaurants: this.state.allRestaurants
-    })
-  }
+ clickHandler(e, type) {
   if (type === 'state' && e.target.value !== 'All') {
     this.setState({
-      selectedRestaurants: this.state.allRestaurants.filter(restaurant => restaurant.state === e.target.value)
+      selectedState: e.target.value
     })
   }
-  if (type === 'categories' && e.target.value !== 'All') {
-    console.log('ok')
+  if (type === 'genre' && e.target.value !== 'All') {
     this.setState({
-      selectedRestaurants: this.state.allRestaurants.filter(restaurant => restaurant.genre.includes(e.target.value))
+      selectedGenre: e.target.value
+    })
+  }
+  if (type === 'state' && e.target.value === 'All') {
+    this.setState({
+      selectedState: 'All'
+    })
+  }
+  if (type === 'genre' && e.target.value === 'All') {
+    this.setState({
+      selectedGenre: 'All'
     })
   }
 }
@@ -72,7 +67,7 @@ render() {
       <Header />
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
       <Filter type="genre" allGenres={this.state.allGenres} clickHandler={this.clickHandler}/>
-      <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedRestaurants={this.state.selectedRestaurants}/>
+      <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre}/>
     </div>
     </RestaurantProvider>
   );

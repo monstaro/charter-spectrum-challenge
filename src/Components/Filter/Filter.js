@@ -1,10 +1,12 @@
 import React from 'react';
+import Button from '../Button/Button';
 
 const Filter = (props) => {
   const { type } = props;
   const { options } = props;
   const { clickHandler } = props;
   const { allGenres } = props;
+
   if (type === 'state') {
     return (
       <div className="filter-dropdown">
@@ -25,7 +27,7 @@ const Filter = (props) => {
     return (
       <div className="filter-dropdown">
         <label for='category'>Choose a category</label>
-          <select name="categories" onChange={(e) => clickHandler(e, 'categories')}>
+          <select name="category" onChange={(e) => clickHandler(e, 'genre')}>
           {
             allGenres.map(genre => {
               return (
@@ -34,12 +36,10 @@ const Filter = (props) => {
             })
           }
           </select>
-
       </div>
     )
   }
 }
 
-// This will be updated to be dynamic with states and genre, just setting placeholders now.
 
 export default Filter
