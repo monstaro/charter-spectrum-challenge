@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './RestaurantsContainer.scss';
 
 const RestaurantsContainer = (props) => {
@@ -8,7 +8,9 @@ const RestaurantsContainer = (props) => {
   const { searchedRestaurants } = props;
   const { searchTerms } = props;
   let selectedRestaurants = [];
-
+  let newRest = [];
+  // const [pagResults, setPag] = useState([]);
+  let pagResults = [];
   if (selectedState === 'All' && selectedGenre !== 'All') {
     selectedRestaurants = allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre))
   }
@@ -32,7 +34,26 @@ const RestaurantsContainer = (props) => {
     ),
   );
 
+  let firstInd = 0;
+  let lastInd = 10;
 
+  const paginateResults = () => {
+    pagResults = [];
+    // let intPag = []
+  while (firstInd < lastInd) {
+    if (selectedRestaurants[firstInd]) {
+    pagResults.push(selectedRestaurants[firstInd])
+    }
+    firstInd++
+  }
+  if (firstInd === lastInd) {
+    lastInd+=10;
+  }
+  console.log(pagResults)
+  console.log(newRest)
+
+  newRest = pagResults;
+  }
 
 
 
@@ -45,8 +66,12 @@ const RestaurantsContainer = (props) => {
          )
        }
        else {
+         paginateResults();
+         console.log(newRest)
+
          return (
         <div className="restaurants-container">
+        <button onClick={() => paginateResults()} />
         <table className="restaurants-table">
           <thead>
           <tr>
@@ -57,7 +82,7 @@ const RestaurantsContainer = (props) => {
             <th>Category</th>
             </tr>
           </thead>
-          {selectedRestaurants.map(restaurant =>
+          {newRest.map(restaurant =>
             <tbody>
             <tr>
             <td>{restaurant.name}</td>
