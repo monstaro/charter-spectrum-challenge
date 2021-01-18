@@ -15,9 +15,11 @@ class App extends Component {
       selectedRestaurants: [],
       allGenres: [],
       selectedGenre: 'All',
-      selectedState: 'All'
+      selectedState: 'All',
+      searchTerms: [],
     }
     this.clickHandler = this.clickHandler.bind(this);
+    this.filterBySearchTerm = this.filterBySearchTerm.bind(this);
   }
 
 componentDidMount() {
@@ -26,7 +28,6 @@ componentDidMount() {
       allRestaurants: data.sort((a, b) => a.name.localeCompare(b.name)),
       selectedRestaurants: data.sort((a, b) => a.name.localeCompare(b.name)),
       allGenres: data.reduce((allGenres, currentRestaurant) => {
-          // console.log(currentRestaurant.genre.split(','))
           let currentGenres = currentRestaurant.genre.split(',');
           currentGenres.forEach(genre => {
             if (!allGenres.includes(genre)) {
@@ -60,11 +61,17 @@ componentDidMount() {
   }
 }
 
+  filterBySearchTerm(searchTerm) {
+    this.setState({
+      searchTerms: searchTerm.split(' ')
+    })
+  }
+
 render() {
   return (
     <RestaurantProvider>
     <div className="App">
-      <Header />
+      <Header searchHandler={this.filterBySearchTerm}/>
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
       <Filter type="genre" allGenres={this.state.allGenres} clickHandler={this.clickHandler}/>
       <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre}/>
