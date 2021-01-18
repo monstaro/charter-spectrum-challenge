@@ -46,8 +46,8 @@ componentDidMount() {
 
 
 clickHandler(e, type) {
-  if (e.target.value === 'All') {
-    console.log(this.state.allRestaurants);
+
+  if (e.target.value === 'All' && type === 'state') {
     this.setState({
       selectedRestaurants: this.state.allRestaurants
     })
