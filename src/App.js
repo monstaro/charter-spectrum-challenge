@@ -48,7 +48,7 @@ componentDidMount() {
   if (type === 'genre' && e.target.value !== 'All') {
     this.setState({
       selectedGenre: e.target.value
-    })Up
+    })
   }
   if (type === 'state' && e.target.value === 'All') {
     this.setState({
