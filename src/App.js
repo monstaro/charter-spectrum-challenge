@@ -66,24 +66,30 @@ componentDidMount() {
     this.setState({
       searchTerms: searchTerms
     })
-    let searchedRestaurants = [];
-      for (var j = 0; j < this.state.selectedRestaurants.length; j++) {
-        searchTerms.forEach(term => {
-          console.log(searchedRestaurants, this.state.selectedRestaurants[j])
-          if (term.toLowerCase() === this.state.selectedRestaurants[j].city.toLowerCase()) {
-            searchedRestaurants.push(this.state.selectedRestaurants[j])
-          }
-          if (term.toLowerCase() === this.state.selectedRestaurants[j].state.toLowerCase()) {
-            searchedRestaurants.push(this.state.selectedRestaurants[j])
-          }
-          if (term.toLowerCase() === this.state.selectedRestaurants[j].name.toLowerCase()) {
-            searchedRestaurants.push(this.state.selectedRestaurants[j])
-          }
-        })
-      }
-    this.setState({
-      searchedRestaurants: searchedRestaurants
-    })
+    // let searchedRestaurants = [];
+    //
+    // console.log(searchTerms, this.state.selectedRestaurants)
+    //
+    //
+    //
+    //   for (var j = 0; j < this.state.selectedRestaurants.length; j++) {
+    //     searchTerms.forEach(term => {
+    //       if (term.toLowerCase() === this.state.selectedRestaurants[j].city.toLowerCase()) {
+    //         searchedRestaurants.push(this.state.selectedRestaurants[j])
+    //       }
+    //       if (term.toLowerCase() === this.state.selectedRestaurants[j].state.toLowerCase()) {
+    //         searchedRestaurants.push(this.state.selectedRestaurants[j])
+    //       }
+    //       if (term.toLowerCase() === this.state.selectedRestaurants[j].name.toLowerCase()) {
+    //         searchedRestaurants.push(this.state.selectedRestaurants[j])
+    //       }
+    //     })
+    //   }
+    //   searchedRestaurants = [...new Set(searchedRestaurants)]
+
+    // this.setState({
+    //   searchedRestaurants: searchedRestaurants
+    // })
   }
 
 

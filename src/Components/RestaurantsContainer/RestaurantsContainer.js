@@ -22,25 +22,16 @@ const RestaurantsContainer = (props) => {
     selectedRestaurants = allRestaurants;
   }
   // Filter by search categories
-  if (searchTerms.length) {
-    let newList = []
-      for (let j = 0; j < searchedRestaurants.length; j++) {
-        selectedRestaurants.forEach(restaurant => {
-          if (restaurant.id === searchedRestaurants[j].id) {
-            newList.push(restaurant)
-          }
-        })
-      }
 
-        selectedRestaurants = newList;
+  const lowerCasedTerms = searchTerms.map((term) => term.toLowerCase());
+  const params = ['city', 'state', 'name'];
 
+  selectedRestaurants = selectedRestaurants.filter((restaurant) =>
+    lowerCasedTerms.every((lowerCasedTerm) =>
+      params.some((param) => restaurant[param].toLowerCase().includes(lowerCasedTerm)),
+    ),
+  );
 
-    // selectedRestaurants.reduce((newList, currentRestaurant) => {
-    //
-    //   return newList
-    // }, [])
-    // selectedRestaurants = selectedRestaurants.filter(restaurant => restaurant.id === )
-  }
 
 
 
