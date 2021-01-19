@@ -8,9 +8,9 @@ const RestaurantsContainer = (props) => {
   const { searchedRestaurants } = props;
   const { searchTerms } = props;
   let selectedRestaurants = [];
-  let newRest = [];
-  // const [pagResults, setPag] = useState([]);
+  // let newRest = [];
   let pagResults = [];
+  // const [pagResults, setPag] = useState([]);
   if (selectedState === 'All' && selectedGenre !== 'All') {
     selectedRestaurants = allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre))
   }
@@ -39,7 +39,6 @@ const RestaurantsContainer = (props) => {
 
   const paginateResults = () => {
     pagResults = [];
-    // let intPag = []
   while (firstInd < lastInd) {
     if (selectedRestaurants[firstInd]) {
     pagResults.push(selectedRestaurants[firstInd])
@@ -50,9 +49,8 @@ const RestaurantsContainer = (props) => {
     lastInd+=10;
   }
   console.log(pagResults)
-  console.log(newRest)
 
-  newRest = pagResults;
+  // newRest = pagResults;
   }
 
 
@@ -67,11 +65,12 @@ const RestaurantsContainer = (props) => {
        }
        else {
          paginateResults();
-         console.log(newRest)
+         console.log(pagResults)
 
          return (
         <div className="restaurants-container">
         <button onClick={() => paginateResults()} />
+
         <table className="restaurants-table">
           <thead>
           <tr>
@@ -82,7 +81,7 @@ const RestaurantsContainer = (props) => {
             <th>Category</th>
             </tr>
           </thead>
-          {newRest.map(restaurant =>
+          {selectedRestaurants.map(restaurant =>
             <tbody>
             <tr>
             <td>{restaurant.name}</td>
