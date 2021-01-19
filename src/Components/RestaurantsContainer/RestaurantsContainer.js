@@ -8,9 +8,10 @@ const RestaurantsContainer = (props) => {
   const { searchedRestaurants } = props;
   const { searchTerms } = props;
   let selectedRestaurants = [];
-  // let newRest = [];
+  let newRestaurants;
   let pagResults = [];
-  // const [pagResults, setPag] = useState([]);
+
+
   if (selectedState === 'All' && selectedGenre !== 'All') {
     selectedRestaurants = allRestaurants.filter(restaurant => restaurant.genre.includes(selectedGenre))
   }
@@ -23,8 +24,9 @@ const RestaurantsContainer = (props) => {
   if (selectedState === 'All' && selectedGenre === 'All') {
     selectedRestaurants = allRestaurants;
   }
-  // Filter by search categories
 
+newRestaurants = selectedRestaurants;
+// Paginate Results
   const lowerCasedTerms = searchTerms.map((term) => term.toLowerCase());
   const params = ['city', 'state', 'name'];
 
@@ -33,7 +35,6 @@ const RestaurantsContainer = (props) => {
       params.some((param) => restaurant[param].toLowerCase().includes(lowerCasedTerm)),
     ),
   );
-
   let firstInd = 0;
   let lastInd = 10;
 
@@ -49,12 +50,13 @@ const RestaurantsContainer = (props) => {
     lastInd+=10;
   }
   console.log(pagResults)
-
-  // newRest = pagResults;
+  newRestaurants = pagResults
+  console.log(newRestaurants)
   }
 
 
 
+// Conditional Render
        if (!allRestaurants.length) {
          return (<div className="restaurants-container">Please wait...</div>)
        }
@@ -64,13 +66,9 @@ const RestaurantsContainer = (props) => {
          )
        }
        else {
-         paginateResults();
-         console.log(pagResults)
 
          return (
         <div className="restaurants-container">
-        <button onClick={() => paginateResults()} />
-
         <table className="restaurants-table">
           <thead>
           <tr>

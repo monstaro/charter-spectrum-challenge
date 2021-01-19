@@ -7,3 +7,10 @@ body, html {
   background-blend-mode: multiply;
   background-color: #666666;
 }
+
+.filters-flex-container {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0;
+}

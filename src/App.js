@@ -74,8 +74,10 @@ render() {
     <RestaurantProvider>
     <div className="App">
       <Header searchHandler={this.filterBySearchTerm}/>
+      <div className="filters-flex-container">
       <Filter type="state" options={allStates} clickHandler={this.clickHandler}/>
       <Filter type="genre" allGenres={this.state.allGenres} clickHandler={this.clickHandler}/>
+      </div>
       <RestaurantsContainer allRestaurants={this.state.allRestaurants} selectedState={this.state.selectedState} selectedGenre={this.state.selectedGenre} searchTerms={this.state.searchTerms} searchedRestaurants={this.state.searchedRestaurants}/>
     </div>
     </RestaurantProvider>
